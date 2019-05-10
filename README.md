@@ -44,3 +44,7 @@ python server.py  #启动flask服务器
 ![首页](img/web_index.png)
 
 ![知识库](img/web_kg.png)
+
+### refer
+
+- [spider](https://github.com/jasonhavend/DJH-Spider)
