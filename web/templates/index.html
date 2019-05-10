@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" class="js cssanimations csstransitions gr__ltp_ai">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=1800px">
+  <meta name="description" content="面向开放文本的人员与机构谱系自动构建关键技术">
+  <link rel="shortcut icon"
+    href="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1555414336618&di=384145c1ab553a90eeaa9526b7bb8bd4&imgtype=0&src=http%3A%2F%2Fimg.sovxin.com%2Fupload%2F2013%2F12%2F07%2Favatar%2F186052056fa7f82dbd9ee2e804143bc0.jpg">
+
+  <title>
+    面向开放文本的人员与机构谱系自动构建关键技术
+  </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="./static/bootstrap.min.css" rel="stylesheet">
+  <link href="./static/theme.css" rel="stylesheet">
+  <link href="./static/bootstrap-reset.css" rel="stylesheet">
+
+  <!-- User css -->
+  <link href="./static/style.css" rel="stylesheet">
+  <link href="./static/main.css" rel="stylesheet">
+  <link href="./static/demo.css" rel="stylesheet">
+
+  <style type="text/css">
+    .dropdown-submenu:hover>.dropdown-menu {
+      display: none
+    }
+  </style>
+</head>
+
+
+<body data-gr-c-s-loaded="true" cz-shortcut-listen="true">
+  <!--header start-->
+  <header class="head-section">
+    <div class="navbar navbar-default navbar-static-top container">
+      <div class="navbar-header">
+        <div class="breadcrumbs">
+          <h1>
+            面向开放文本的人员与机构谱系自动构建关键技术
+          </h1>
+        </div>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li>
+            <a href="/">主页</a>
+          </li>
+          <li>
+            <a href="#">属性抽取</a>
+          </li>
+          <li>
+            <a href="/kg">知识图谱</a>
+          </li>
+          <li>
+            <a href="#">常见问题</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <!--header end-->
+
+  <!-- breadcrumbs start-->
+  <!-- <div class="breadcrumbs">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 col-sm-6">
+          <h1>
+            面向开放文本的人员与机构谱系自动构建关键技术
+          </h1>
+        </div>
+      </div>
+    </div>
+  </div> -->
+  <!--breadcrumbs end -->
+
+  <div class="container demo">
+    <div class="dis-wrapper">
+      <div class="row">
+        <div class="sub-select clearfix">
+          <label class="radio-inline">
+            <b>输入内容</b>
+          </label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-10 col-sm-10">
+          <textarea class="form-control" style="border-radius: 10px;" rows="6" id="inputText"
+            placeholder="请输入正确格式的文本..."></textarea>
+        </div>
+        <div class="col-md-2 col-sm-2">
+          <div class=" keep-margin-top-5px" style="text-align : center">
+            <button type="button" class="btn btn-default btn-small form-control" id="process3">实体链接</button>
+            <button type="button" style="margin-top:10px;" class="btn btn-default btn-small form-control"
+              id="process1">实体识别</button><br />
+            <button type="button" style="margin-top:10px;" class="btn btn-default btn-small form-control"
+              id="process2">关系抽取</button><br />
+          </div>
+        </div>
+      </div>
+      <div id="analysisPanel" style="display: block;">
+        <div class="tab-pane active" id="para" role="tabpanel" aria-labelledby="para-tab">
+          <div class="row">
+            <div class="sub-select clearfix">
+              <label class="radio-inline">
+                <b>分析结果</b>
+              </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 col-sm-12">
+              <div class="analysis-wrapper">
+                <div id="paraContent">
+                  <span style="color : #00008b;">大连俱乐部</span>在决赛后，因对裁判员判罚不满，而拒绝领奖和不出席新闻发布会。这种行为不仅不符合体育精神，不符合足球比赛的规范，也有损于
+                  <span style="color : #00008b;">大连俱乐部</span>和<span style="color : #3c8c71;">中国</span>足球的形象。对此，
+                  <span style="color : #3c8c71;">中国</span>足球协会特通报批评。
+                  <span style="color : #00008b;">大连俱乐部</span>应认真检查，吸取教训，并准备接受亚足联可能给予的处罚。
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="analysisPanel" style="display: block;">
+        <div class="tab-pane active" id="para" role="tabpanel" aria-labelledby="para-tab">
+          <div class="row">
+            <div id="paraNerIntro" style="display: block; margin-top: 10px;">
+              <b style="padding-left: 20px;">实体标签</b>
+              <label class="inline"><span class="box" style="background: red;"></span>人名(PER)</label>
+              <label class="inline"><span class="box" style="background: purple;"></span>机构(ORG)</label>
+              <label class="inline"><span class="box" style="background: blue;"></span>产品(PCT)</label>
+              <label class="inline"><span class="box" style="background: green;"></span>成果(OUT)</label>
+              <label class="inline"><span class="box" style="background: brown;"></span>职位(SER)</label>
+            </div>
+          </div>
+          <div class="row">
+            <div id="paraNerIntro" style="display: block; margin-top: 10px;">
+              <b style="padding-left: 20px;">关系标签</b>
+              </label>
+            </div>
+          </div>
+          <div style="margin:0 auto;width:97%;text-align:center;padding: 0 10 0 10;margin-top: 20px;">
+            <div class="container-fluid">
+              <div class="row-fluid">
+                <div class="span12">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th style="text-align:center">关系类型</th>
+                        <th style="text-align:center">类型说明</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="success" style="color:black">
+                        <td>演化 Evolve</td>
+                        <td>机构-机构关系</td>
+                      </tr>
+                      <tr class="success" style="color:black">
+                        <td>管辖 Jurisdiction</td>
+                        <td>机构-机构关系</td>
+                      </tr>
+                      <tr class="success" style="color:black">
+                        <td>资助 Sponsor</td>
+                        <td>机构-机构关系</td>
+                      </tr>
+                      <tr class="success" style="color:black">
+                        <td>竞争 Compete</td>
+                        <td>机构-机构关系</td>
+                      </tr>
+                      <tr class="success" style="color:black">
+                        <td>合作 Corporate</td>
+                        <td>机构-机构关系</td>
+                      </tr>
+                      <tr style="background-color:#f1b6b0;color: black">
+                        <td>受教育 Education</td>
+                        <td>人员-机构关系</td>
+                      </tr>
+                      <tr style="background-color:#f1b6b0;color: black">
+                        <td>领导 Lead</td>
+                        <td>人员-机构关系</td>
+                      </tr>
+                      <tr style="background-color:#f1b6b0;color: black">
+                        <td>访问 Visit</td>
+                        <td>人员-机构关系</td>
+                      </tr>
+                      <tr style="background-color:#f1b6b0;color: black">
+                        <td>就职于 Position-at</td>
+                        <td>人员-机构关系</td>
+                      </tr>
+                      <tr style="background-color:#f1b6b0;color: black">
+                        <td>创办 Found</td>
+                        <td>人员-机构关系</td>
+                      </tr>
+                      <tr class="warning" style="color:black">
+                        <td>研制 Develop</td>
+                        <td>属性相关关系</td>
+                      </tr>
+                      <tr class="warning" style="color:black">
+                        <td>使用 Utilize</td>
+                        <td>属性相关关系</td>
+                      </tr>
+                      <tr class="warning" style="color:black">
+                        <td>取得 Achieve</td>
+                        <td>属性相关关系</td>
+                      </tr>
+                      <tr class="warning" style="color:black">
+                        <td>担任职位 Serve-as</td>
+                        <td>属性相关关系</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="push"></div>
+  </div>
+
+
+  <!--footer start-->
+  <footer class="footer bottom" name="footer" id="footer">
+    <div class="container">
+      <div class="row">
+        <div style="text-align: center">
+          <span>北京市海淀区中关村南大街5号</span>&nbsp;&nbsp;&nbsp;
+          <span>中国，北京</span>&nbsp;&nbsp;&nbsp;
+          <span>100081</span>&nbsp;&nbsp;
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- footer end -->
+  <script src="./static/jquery-1.8.3.min.js">
+  </script>
+  <script src="./static/bootstrap.min.js">
+  </script>
+
+  <!--common script for all pages-->
+  <script src="./static/common-scripts.js">
+  </script><i id="back-to-top" style="display: none;"></i>

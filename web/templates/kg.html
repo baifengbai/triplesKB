@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en" class="js cssanimations csstransitions gr__ltp_ai">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=1800px">
+    <meta name="description" content="面向开放文本的人员与机构谱系自动构建关键技术">
+
+    <title>关键词与关键词三元组</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./static/bootstrap.min.css" rel="stylesheet">
+    <link href="./static/theme.css" rel="stylesheet">
+    <link href="./static/bootstrap-reset.css" rel="stylesheet">
+
+    <!-- User css -->
+    <link href="./static/style.css" rel="stylesheet">
+    <link href="./static/main.css" rel="stylesheet">
+    <link href="./static/demo.css" rel="stylesheet">
+    <script src="static/echarts.min.js"></script>
+
+    <style type="text/css">
+        .dropdown-submenu:hover>.dropdown-menu {
+            display: none
+        }
+    </style>
+</head>
+
+<body data-gr-c-s-loaded="true" cz-shortcut-listen="true">
+    <!--header start-->
+    <header class="head-section">
+        <div class="navbar navbar-default navbar-static-top container">
+            <div class="navbar-header">
+                <div class="breadcrumbs">
+                    <h1>
+                        知识图谱
+                    </h1>
+                </div>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">主页</a>
+                    </li>
+                    <li>
+                        <a href="#">属性抽取</a>
+                    </li>
+                    <li>
+                        <a href="#">知识图谱</a>
+                    </li>
+                    <li>
+                        <a href="#">常见问题</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <div class="row clearfix">
+            <div class="col-md-12 column">
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <strong>1.选择数据库</strong>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="dbtype" value="key_key" checked>
+                                <span>关键词和关键词</span>
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="dbtype" value="per_key">
+                                人员和关键词
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="dbtype" value="org_key">
+                                机构和关键词
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="optionsRadios" id="dbtype" value="per_org">
+                                人员和机构
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!--query-->
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <strong>2.输入查询</strong>
+                        <br />
+                        <br />
+                        <input  class="form-control" style="width: 150px;display: inline" id="e1"
+                            placeholder="'实体1'"></input>
+                        &nbsp;
+                        <input  class="form-control" style="width: 150px;display: inline" id="e2"
+                            placeholder="'实体2'"></input>
+                        &nbsp;<button id='node' class="btn btn-primary btn-large">查询</button>&nbsp;
+                        <button id='all' class="btn btn-primary btn-large">显示部分</button>
+                        <br />
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-10">
+                        <br />
+                        <strong>Example:</strong>
+                        <table class="table" style="text-align:center">
+                            <thead>
+                                <tr>
+                                    <th style="text-align:center">关键词</th>
+                                    <th style="text-align:center">人员</th>
+                                    <th style="text-align:center">机构</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="success" style="color:black">
+                                    <td><strong>attack</strong> : 攻击</td>
+                                    <td><strong>jason</strong> </td>
+                                    <td><strong>University</strong> : 大学</td>
+                                </tr>
+                                <tr class="success" style="color:black">
+                                    <td><strong>artificial intelligence</strong> : 人工智能</td>
+                                    <td><strong>johan</strong></td>
+                                    <td><strong>college</strong> : 学院</td>
+                                </tr>
+                                <tr class="success" style="color:black">
+                                    <td><strong>computer</strong> : 计算</td>
+                                    <td><strong>Hinton</strong></td>
+                                    <td><strong>laboratory</strong> : 实验室</td>
+                                </tr>
+                                <tr class="success" style="color:black">
+                                    <td><strong>machine learning</strong> : 机器学习</td>
+                                    <td><strong>jeffer</strong></td>
+                                    <td><strong>china united</strong> : 中国 联合</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <!--结果-->
+                    <div class="form-group">
+                        <div class="col-sm-10" style="width: 1200px;">
+                            <strong>3.查询结果</strong>&nbsp;&nbsp;<strong id='result_show'
+                                style="color:dodgerblue"></strong>
+                            <br />
+                            <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+                            <div id="neo4j" style="height: 800px;"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            &nbsp;
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--footer start-->
+    <footer class="footer bottom" name="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <div style="text-align: center">
+                    <span>北京市海淀区中关村南大街5号</span>&nbsp;&nbsp;&nbsp;
+                    <span>中国，北京</span>&nbsp;&nbsp;&nbsp;
+                    <span>100081</span>&nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <script src="./static/jquery-1.8.3.min.js">
+    </script>
+    <script src="./static/bootstrap.min.js">
+    </script>
+
+    <!--common script for all pages-->
+    <script src="./static/common-scripts.js">
+    </script><i id="back-to-top" style="display: none;"></i>
+</body>
+
+</html>
+<script>
+    function query_all() {
+        //category_map = {0,1,2}["Keyword", "Person", 'Organization']
+        // entities = [
+        //         {'name':'小明','category':0},
+        //         {'name':'小红','category':0},
+        //         {'name':'小红红','category':1},
+        //         {'name':'大明明','category':1},
+        //         {'name':'大红红','category':1}]
+        // tpl1 = { 'e1': 0, 'rel': 'like1', 'e2': 1 }
+        // tpl2 = { 'e1': 0, 'rel': 'like2', 'e2': 2 }
+        // tpl3 = { 'e1': 3, 'rel': 'like4', 'e2': 4 }
+        // triples = [tpl1, tpl2, tpl3]
+        var myChart = echarts.init(document.getElementById('neo4j'));
+        myChart.showLoading();
+        var dbtype = $('input[name="optionsRadios"]:checked').val();
+        $('#result_show').text('');
+        $.ajax({
+            url: 'http://127.0.0.1:5000/kg/query_all',
+            type: 'POST',
+            data: { 'dbtype': dbtype },
+            dataType: 'json',
+            success: function (result) {
+                entities = result['entities'];
+                triples = result['triples'];
+                $('#result_show').text('实体' + entities.length + '条,三元组' + triples.length + '条');
+                update_grpha(entities, triples);
+            },
+            error: function (result) {
+                alert('something error!')
+            }
+        })
+    }
+
+    function query_by_node() {
+        var e1 = $('#e1').val();
+        var e2 = $('#e2').val();
+
+        if (e1.trim() == '' && e2.trim() == '') {
+            alert('请输入实体');
+            return;
+        }
+
+        var myChart = echarts.init(document.getElementById('neo4j'));
+        myChart.showLoading();
+        var dbtype = $('input[name="optionsRadios"]:checked').val();
+        $('#result_show').text('');
+        $.ajax({
+            url: 'http://127.0.0.1:5000/kg/query_by_node',
+            type: 'POST',
+            data: { 'e1': e1, 'e2': e2, 'dbtype': dbtype },
+            dataType: 'json',
+            success: function (result) {
+                entities = result['entities'];
+                triples = result['triples'];
+                $('#result_show').text('实体' + entities.length + '条,三元组' + triples.length + '条');
+                update_grpha(entities, triples);
+            },
+            error: function (result) {
+                alert('something error!')
+            }
+        })
+    }
+
+    $(document).ready(function () {
+        /*绑定事件*/
+        $("#node").click(function (event) {
+            query_by_node();
+        });
+
+        /*绑定事件*/
+        $("#all").click(function (event) {
+            query_all();
+        });
+
+        /*绑定事件*/
+        $('#input_node').bind('keypress', function (event) {
+            if (event.keyCode == 13) {
+                query_by_node()
+            }
+        });
+    });
+
+    function update_grpha(entities, triples) {
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('neo4j'));
+
+        // 指定图表的配置项和数据
+        var option = {}
+        option['title'] = {//图标信息
+            text: '',
+        }
+        option['tooltip'] = {},//提示框组件
+            option['animation'] = false;
+        option['animationDelay'] = -90;
+        option['animationThreshold'] = 1;
+        option['animationDuration'] = 1;
+        option['animationDurationUpdate'] = 1//数据更新动画的时长
+        option['animationEasingUpdate'] = 'quinticInOut',//数据更新动画的缓动效果
+            option['label'] = { normal: { show: true, textStyle: { fontSize: 18 }, } }
+        option['legend'] = {
+            x: "center",
+            show: true,
+            data: ["Keyword", "Person", 'Organization']
+        }
+        //更新数据mydata和mylinks
+        var mydata = [];
+        for (var entity of entities) {
+            node = {
+                name: entity['name'],
+                category: entity['category'],
+                draggable: false,
+            }
+            mydata.push(node);
+        }
+        var mylinks = [];
+        for (var tpl of triples) {
+            e1 = tpl['e1']
+            rel = tpl['rel']
+            e2 = tpl['e2']
+            edge = {
+                source: e1,
+                target: e2,
+                value: rel
+            }
+            mylinks.push(edge);
+        }
+        // 设置series
+        var series = [{
+            type: 'graph',
+            layout: 'force',
+            symbolSize: 50,
+            focusNodeAdjacency: true,
+            roam: true,
+            //力量
+            force: {
+                repulsion: 1000
+            },
+            categories: [{
+                name: 'Keyword',
+                itemStyle: {
+                    normal: {
+                        color: "#009800",
+                    }
+                }
+            }, {
+                name: 'Person',
+                itemStyle: {
+                    normal: {
+                        color: "#4592FF",
+                    }
+                }
+            }, {
+                name: 'Organization',
+                itemStyle: {
+                    normal: {
+                        color: "#FF0000",
+                    }
+                }
+            }],
+            label: {
+                normal: {
+                    show: true,
+                    textStyle: {
+                        fontSize: 20
+                    },
+                }
+            },
+            force: {
+                repulsion: 1000
+            },
+            edgeSymbolSize: [4, 50],
+            edgeLabel: {
+                normal: {
+                    show: true,
+                    textStyle: {
+                        fontSize: 20
+                    },
+                    formatter: "{c}"
+                }
+            },
+            //结点
+            data: mydata,
+            //边
+            links: mylinks,
+            lineStyle: {
+                normal: {
+                    opacity: 0.9,
+                    width: 1,
+                    curveness: 0
+                }
+            }
+        }]
+        option['series'] = series
+        myChart.hideLoading();
+        // 使用刚指定的配置项和数据显示图表
+        myChart.setOption(option);
+
+    }
+</script>

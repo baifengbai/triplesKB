@@ -1,0 +1,89 @@
+.logos {
+  margin: 80px 0;
+}
+
+.logos .recent-work {
+  text-align: center;
+}
+
+.logos .row {
+  height: 150px;
+}
+
+.logos .row div {
+    height: 100%;
+}
+
+.logos img {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  height: auto;
+}
+
+.news ul {
+  padding-left: 40px;
+}
+
+.news legend {
+  margin-bottom: 29px;
+  font-size: 31px;
+  color: #48cfad;
+}
+
+.news h3 {
+  margin-bottom: 14px;
+}
+
+.news .content {
+    margin-top: 10px;
+    margin-bottom: 16px;
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.news .content-one-year {
+  margin-bottom: 55px;
+}
+
+.btn-download {
+  width: 50%;
+  margin-top: 0px !important; 
+}
+
+.download {
+  margin-top: 39px;
+  margin-bottom: 60px;
+}
+
+.download h3 {
+  text-align: center;
+  margin: 35px 0 20px;
+}
+.download .title {
+  text-align: center;
+  font-size: large;
+  margin-top: 6px;
+  
+}
+
+.download .contant {
+  margin-bottom: 60px;
+}
+
+.download .discription {
+  margin-top: 85px;
+}
+
+.download .table-responsive {
+  margin-top: 50px;
+}
+
+.faq ul {
+  padding-left: 40px;
+
+}
+
+.faq #accordion {
+  margin-bottom: 40px;
+}

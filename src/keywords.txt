@@ -1,0 +1,36 @@
+1.交叉融合技术
+1.1.1.纳米科技
+1.1.1.1.纳米武器
+1.1.1.1.1.纳米兵器/Nano weapon
+1.1.1.1.2.纳米军队/Nano forces
+1.1.1.1.3.纳米信息系统/Nanoinformation system
+1.1.1.2.纳米能源
+1.1.1.2.1.纳米发电机/nanogenerator
+1.1.1.2.2.蓝色能源/blue energy
+1.1.1.3.纳米生物医学
+1.1.1.3.1.纳米医学/nanomedicine/Medical nanotechnology
+1.1.1.3.2.纳米药物/nano-medicines/nano-drug
+1.1.1.3.3.纳米仿生/nano-bionics
+1.1.1.3.4.纳米诊断/nano diagnosis
+2.军事
+2.1.1.武器平台与技术
+2.1.1.1.空间平台/Space Bus
+2.1.1.1.1.空天飞机/aerospace plane
+2.1.1.1.2.航天飞机/space shuttle; space plane
+2.1.1.1.3.载人航天器/manned spacecraft
+2.1.1.1.3.1.空间站/space station
+2.1.1.1.3.2.载人飞船/manned spacecraft
+2.1.1.1.3.3.休眠舱/Stasis Chamber
+2.1.1.1.3.4.充气空间栖息地/Inflatable space habitat
+2.1.1.2.货运飞船/cargo spacecraft
+2.1.1.3.侦察卫星/reconnaissance satellite
+2.1.1.3.1.照相侦察卫星/photo reconnaissance satellite
+2.1.1.3.2.电子侦察卫星/electronic reconnaissance satellite
+2.1.1.3.3.雷达成像卫星/radar imaging satellite
+2.1.2.防空、反导与对抗
+2.1.2.1.武库机/ Arsenal Plane
+2.1.2.2.侦察弹/ Reconnaissance Munitions
+2.1.2.3.巡飞弹/ Loitering Attack Missile
+2.1.2.4.无人机系统/ Military UAV
+2.1.2.4.1.小精灵无人机/ Gremlins
+2.1.2.4.2.山鹑无人机/ Perdix 
