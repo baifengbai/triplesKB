@@ -21,19 +21,32 @@
 ### Directory
 
 ├── data                  保存最终的采集数据
+
 │   ├── organizations
+
 │   └── persons
+
 └── web                             部署到Web服务器
+
 └── src
-        ├── aminer_crawler     Aminer爬虫
-        ├── baike_crawler       百科爬虫
-        │   └── data                 保存中间采集数据
-        ├── dict                        关键字,人员,机构生成的id字典
-        ├── scholar_crawler    学术爬虫
-        │   ├── data
-        │   ├── proxy_hellper   代理池工具
-        │   └── util
-        └── triples                    保存三元组
+
+   ├── aminer_crawler     Aminer爬虫
+
+   ├── baike_crawler       百科爬虫
+
+   │   └── data                 保存中间采集数据
+
+   ├── dict                        关键字,人员,机构生成的id字典
+
+   ├── scholar_crawler    学术爬虫
+
+   │   ├── data
+
+   │   ├── proxy_hellper   代理池工具
+
+   │   └── util
+
+   └── triples                    保存三元组
 
 ### Result
 
