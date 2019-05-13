@@ -17,6 +17,8 @@
 > flask 1.x
 >
 > mongodb v3.6.3
+>
+> echarts 3.0
 
 ### Directory
 
