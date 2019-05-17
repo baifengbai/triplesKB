@@ -1,6 +1,11 @@
 # triplesKB
+==========
 
----
+[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+
+*****
+
+**triplesKB 是一个自动构建特定领域三元组知识库的工具.遵循Apache 2.0协议.**
 
 ### Background
 
@@ -21,35 +26,22 @@
 > echarts 3.0
 
 ### Directory
-
+```
 ├── data                  保存最终的采集数据
-
 │   ├── organizations
-
 │   └── persons
-
 └── web                             部署到Web服务器
-
 └── src
-
    ├── aminer_crawler     Aminer爬虫
-
    ├── baike_crawler       百科爬虫
-
    │   └── data                 保存中间采集数据
-
    ├── dict                        关键字,人员,机构生成的id字典
-
    ├── scholar_crawler    学术爬虫
-
    │   ├── data
-
    │   ├── proxy_hellper   代理池工具
-
    │   └── util
-
    └── triples                    保存三元组
-
+```
 ### Result
 
 ```python
@@ -68,6 +60,19 @@ python server.py  #启动flask服务器
 ![](img/4.png)
 
 
-### refer
+## Citation
+
+If you use this work in a scientific publication, I would appreciate references to the following BibTex entry:
+
+```latex
+@misc{jasonhavend2019@triplesKB,
+  title={triplesKB},
+  author={Jianghai Dai},
+  howpublished={\url{https://github.com/jasonhavenD/triplesKB}},
+  year={2019}
+}
+```
+
+### Reference
 
 - [spider](https://github.com/jasonhavend/DJH-Spider)
