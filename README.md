@@ -58,6 +58,8 @@ python server.py  #启动flask服务器
 ![](img/3.png)
 4.人员与机构的部分关系元组可视化如图所示,蓝色节点表示人员,红色节点表示机构,有边相连表示人员属于该机构.
 ![](img/4.png)
+5.知识图谱搜索
+![](img/search_keyword.png)
 
 
 ### Citation
