@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en" class="js cssanimations csstransitions gr__ltp_ai">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=1800px">
+    <meta name="description" content="面向开放文本的人员与机构谱系自动构建关键技术">
+
+    <title>知识图谱</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/static/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/theme.css" rel="stylesheet">
+    <link href="/static/bootstrap-reset.css" rel="stylesheet">
+
+    <!-- User css -->
+    <link href="/static/style.css" rel="stylesheet">
+    <link href="/static/main.css" rel="stylesheet">
+    <link href="/static/demo.css" rel="stylesheet">
+    <script src="static/echarts.min.js"></script>
+
+    <style type="text/css">
+        .dropdown-submenu:hover>.dropdown-menu {
+            display: none
+        }
+    </style>
+</head>
+
+<body data-gr-c-s-loaded="true" cz-shortcut-listen="true">
+    <!--header start-->
+    <header class="head-section">
+        <div class="navbar navbar-default navbar-static-top container">
+            <div class="navbar-header">
+                <div class="breadcrumbs">
+                    <h1>
+                        知识图谱
+                    </h1>
+                </div>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/">主页</a>
+                    </li>
+                    <li>
+                        <a href="/kg">知识图谱</a>
+                    </li>
+                    <li>
+                        <a href="/triples">三元组可视化</a>
+                    </li>
+                    <li>
+                        <a href="#">常见问题</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+
+    <div class="container">
+        <div class="row" style="text-align: center">
+            <div class="col-md-12 col-sm-12">
+                <center>
+                    <div style="margin:10px;width: 50%;">
+                        <input class="form-control" style="border-radius: 10px;font-weight: 800;" id="input_keyword"
+                            placeholder="Input keyword"></input>
+                    </div>
+                    <button style="border-radius: 10px;background-color:darkseagreen;height: 2.5em;font-size: 0.5em"
+                        class="word btn btn-small">Energy</button>
+                    <button style="border-radius: 10px;background-color:darkseagreen;height: 2.5em;font-size: 0.5em"
+                        class="word btn btn-small">Machine</button>
+                    <button style="border-radius: 10px;background-color:darkseagreen;height: 2.5em;font-size: 0.5em"
+                        class="word btn btn-small">Weapon</button>
+                    <button style="border-radius: 10px;background-color:darkseagreen;height: 2.5em;font-size: 0.5em"
+                        class="word btn btn-small">Satellite</button>
+                    <button style="border-radius: 10px;background-color:darkseagreen;height: 2.5em;font-size: 0.5em"
+                        class="word btn btn-small">Technology</button>
+                    <button style="border-radius: 10px;background-color:darkseagreen;height: 2.5em;font-size: 0.5em"
+                        class="word btn btn-small">Quantum</button>
+                    <button style="border-radius: 10px;background-color:darkseagreen;height: 2.5em;font-size: 0.5em"
+                        class="word btn btn-small">Nano</button>
+                </center>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="container">
+        <div class="row" style="text-align: center">
+            <span><button style="margin-top:10px;margin-right: 20px;margin-left: 20px;border-radius: 10px;"
+                    class="btn btn-default btn-small" id="open2">二级展开</button></span>
+            <!-- <span><button  style="margin-top:10px;margin-right: 20px;margin-left: 20px;"
+                    class="btn btn-default btn-small" id="open3">三级展开</button></span>
+            <span><button  style="margin-top:10px;margin-right: 20px;margin-left: 20px;"
+                    class="btn btn-default btn-small" id="close3">三级折叠</button></span> -->
+            <span><button style="margin-top:10px;margin-right: 20px;margin-left: 20px;border-radius: 10px;"
+                    class="btn btn-default btn-small" id="close2">二级折叠</button></span>
+        </div>
+    </div>
+    <div id="tree" style="width: 95%;height:1000px;"></div>
+    <!--footer start-->
+    <footer class="footer bottom" name="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <div style="text-align: center">
+                    <span>北京市海淀区中关村南大街5号</span>&nbsp;&nbsp;&nbsp;
+                    <span>中国，北京</span>&nbsp;&nbsp;&nbsp;
+                    <span>100081</span>&nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer end -->
+    <script src="/static/jquery-1.8.3.min.js">
+    </script>
+    <script src="/static/bootstrap.min.js">
+    </script>
+    <script src="/static/echarts.min.js"></script>
+
+    <!--common script for all pages-->
+    <script src="/static/common-scripts.js">
+    </script><i id="back-to-top" style="display: none;"></i>
+</body>
+
+</html>
+
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('tree'));
+    var global_data = [];
+
+    function update_graph(data) {
+        myChart.setOption(option = {
+            tooltip: {
+                trigger: 'item',
+                triggerOn: 'mousemove'
+            },
+            series: [
+                {
+                    type: 'tree',
+
+                    data: [data],
+
+                    top: '1%',
+                    left: '10%',
+                    bottom: '1%',
+                    right: '10%',
+
+                    symbolSize: 14,
+
+                    label: {
+                        normal: {
+                            position: 'left',
+                            verticalAlign: 'middle',
+                            align: 'right',
+                            fontSize: 16
+                        }
+                    },
+
+                    leaves: {
+                        label: {
+                            normal: {
+                                position: 'right',
+                                verticalAlign: 'middle',
+                                align: 'left'
+                            }
+                        }
+                    },
+
+                    expandAndCollapse: true,
+                    animationDuration: 550,
+                    animationDurationUpdate: 750
+                }
+            ]
+        });
+        myChart.setOption(option);
+    }
+
+    function open2() {
+        echarts.util.each(global_data.children, function (datum, index) {//第二级
+            datum.collapsed = false;
+            echarts.util.each(datum.children, function (t, index) {//第三级
+                t.collapsed = true;
+            });
+        });
+        update_graph(global_data);
+    }
+
+    function open3() {
+        echarts.util.each(global_data.children, function (datum, index) {//第二级
+            datum.collapsed = false;
+            echarts.util.each(datum.children, function (t, index) {//第三级
+                t.collapsed = false;
+            });
+        });
+        update_graph(global_data);
+    }
+
+    function close2() {
+        echarts.util.each(global_data.children, function (datum, index) {//第二级
+            datum.collapsed = true;
+        });
+        update_graph(global_data);
+    }
+
+    function close3() {
+        echarts.util.each(global_data.children, function (datum, index) {//第二级
+            echarts.util.each(datum.children, function (t, index) {//第三级
+                t.collapsed = true;
+            });
+        });
+        update_graph(global_data);
+    }
+
+    function query_by_kid(kid) {
+        window.open("/kg/query_by_kid?kid=" + kid);
+    }
+    function query_by_keyword(keyword) {
+        window.open("/kg/query_by_keyword?keyword=" + keyword);
+    }
+
+    $(document).ready(function () {
+
+        $("#open2").click(function (event) {
+            open2();
+        });
+
+        $("#open3").click(function (event) {
+            open3();
+        });
+
+        $("#close2").click(function (event) {
+            close2();
+        });
+
+        $("#close3").click(function (event) {
+            close3();
+        });
+        $(".word").click(function (event) {
+            query_by_keyword(this.innerText);
+        });
+
+        $("#input_keyword").keypress(function (e) {
+            if (e.which == 13) {
+                keyword = $('#input_keyword').val().trim();
+                if (keyword == '') {
+                    alert('Input keyword!');
+                    return;
+                }
+                else {
+                    query_by_keyword(keyword);
+                }
+            }
+        });
+
+
+        myChart.showLoading();
+
+        myChart.on("click", clickFun);
+
+        function clickFun(param) {
+            if (typeof param.seriesIndex == 'undefined') {
+                return;
+            }
+            if (param.type == 'click' && param.value != undefined) {
+                //alert(param.value);
+                kid = param.value
+                query_by_kid(kid);
+            }
+        }
+
+        $.get('/kg/file/keyword.json', function (mydata) {
+
+            global_data = mydata;
+
+            echarts.util.each(mydata.children, function (datum, index) {
+                index % 2 === 1 && (datum.collapsed = true);
+                echarts.util.each(datum.children, function (t, i) {
+                    i % 2 === 0 && (t.collapsed = true);
+                    echarts.util.each(t.children, function (tt, j) {
+                        j % 2 === 1 && (tt.collapsed = true);
+                    });
+                });
+
+            });
+            myChart.hideLoading();
+            update_graph(mydata);
+        });
+    });
+
+</script>

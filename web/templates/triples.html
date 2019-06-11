@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=1800px">
     <meta name="description" content="面向开放文本的人员与机构谱系自动构建关键技术">
 
-    <title>关键词与关键词三元组</title>
+    <title>三元组可视化</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="./static/bootstrap.min.css" rel="stylesheet">
-    <link href="./static/theme.css" rel="stylesheet">
-    <link href="./static/bootstrap-reset.css" rel="stylesheet">
+    <link href="/static/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/theme.css" rel="stylesheet">
+    <link href="/static/bootstrap-reset.css" rel="stylesheet">
 
     <!-- User css -->
-    <link href="./static/style.css" rel="stylesheet">
-    <link href="./static/main.css" rel="stylesheet">
-    <link href="./static/demo.css" rel="stylesheet">
+    <link href="/static/style.css" rel="stylesheet">
+    <link href="/static/main.css" rel="stylesheet">
+    <link href="/static/demo.css" rel="stylesheet">
     <script src="static/echarts.min.js"></script>
 
     <style type="text/css">
@@ -33,24 +33,24 @@
             <div class="navbar-header">
                 <div class="breadcrumbs">
                     <h1>
-                        知识图谱
+                      三元组可视化
                     </h1>
                 </div>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">主页</a>
-                    </li>
-                    <li>
-                        <a href="#">属性抽取</a>
-                    </li>
-                    <li>
-                        <a href="#">知识图谱</a>
-                    </li>
-                    <li>
+                        <a href="/">主页</a>
+                      </li>
+                      <li>
+                        <a href="/kg">知识图谱</a>
+                      </li>
+                      <li>
+                        <a href="/triples">三元组可视化</a>
+                      </li>
+                      <li>
                         <a href="#">常见问题</a>
-                    </li>
+                      </li>
                 </ul>
             </div>
         </div>
@@ -181,13 +181,13 @@
         </div>
     </footer>
     <!-- footer end -->
-    <script src="./static/jquery-1.8.3.min.js">
+    <script src="/static/jquery-1.8.3.min.js">
     </script>
-    <script src="./static/bootstrap.min.js">
+    <script src="/static/bootstrap.min.js">
     </script>
 
     <!--common script for all pages-->
-    <script src="./static/common-scripts.js">
+    <script src="/static/common-scripts.js">
     </script><i id="back-to-top" style="display: none;"></i>
 </body>
 
@@ -210,7 +210,7 @@
         var dbtype = $('input[name="optionsRadios"]:checked').val();
         $('#result_show').text('');
         $.ajax({
-            url: 'http://127.0.0.1:5000/kg/query_all',
+            url: 'http://127.0.0.1:5000/triples/query_all',
             type: 'POST',
             data: { 'dbtype': dbtype },
             dataType: 'json',
@@ -240,7 +240,7 @@
         var dbtype = $('input[name="optionsRadios"]:checked').val();
         $('#result_show').text('');
         $.ajax({
-            url: 'http://127.0.0.1:5000/kg/query_by_node',
+            url: 'http://127.0.0.1:5000/triples/query_by_node',
             type: 'POST',
             data: { 'e1': e1, 'e2': e2, 'dbtype': dbtype },
             dataType: 'json',
