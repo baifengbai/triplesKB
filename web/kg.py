@@ -11,6 +11,7 @@
 import sys
 import re
 import json
+from functools import reduce
 from tqdm import tqdm
 from pymongo import MongoClient
 
@@ -55,7 +56,7 @@ def query_by_keyword(key):
             break
     person_list.sort(key=person_importance, reverse=True)
     organ_list.sort(key=organ_importance, reverse=True)
-    return person_list[:50], organ_list[:50]
+    return person_list[:30], organ_list[:50]
 
 
 def query_person_by_name(name):
@@ -93,8 +94,9 @@ def query_per_by_kid(kid):
         # tmp['id'] = e['_id']
         # tmp['type'] = 'person'
         person_list.append(e)
+    person_list = list_dict_duplicate_removal(person_list)
     person_list.sort(key=person_importance, reverse=True)
-    return person_list[:30]
+    return person_list[:100]
 
 
 def query_org_by_kid(kid):
@@ -109,8 +111,14 @@ def query_org_by_kid(kid):
         # tmp['id'] = e['_id']
         # tmp['type'] = 'organ'
         organ_list.append(e)
+    organ_list = list_dict_duplicate_removal(organ_list)
     organ_list.sort(key=organ_importance, reverse=True)
-    return organ_list[:30]
+    return organ_list[:100]
+
+
+def list_dict_duplicate_removal(data_list):
+    def run_function(x, y): return x if y in x else x + [y]
+    return reduce(run_function, [[], ] + data_list)
 
 
 if __name__ == "__main__":

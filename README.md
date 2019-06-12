@@ -61,6 +61,10 @@ python server.py  #启动flask服务器
 5.知识图谱搜索
 ![](img/search_keyword.png)
 
+6.查询关键字结果
+
+![](img/6.png)
+
 
 ### Citation
 

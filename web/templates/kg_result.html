@@ -55,16 +55,44 @@
         </div>
     </header>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-10 col-sm-10">
-                <span><button type="button" style="margin-top:10px;margin-right: 20px;margin-left: 20px;"
-                        class="btn btn-default btn-small" id="open2">二级展开</button></span>
-                <span>person_list = {{person_list}}</span>
-                <span>organ_list = {{organ_list}}</span>
+    <div class="row clearfix" style="margin:0 10%;padding-bottom:10%;">
+        <div class="col-md-8 column">
+            <h3>Persons </h3>
+            <div class="analysis-wrapper">
+                <div id="Persons" style="text-align:center">
+                </div>
+            </div>
+            <h3>Organizations </h3>
+            <div class="analysis-wrapper">
+                <div id="Organizations" style="text-align:center">
+                </div>
             </div>
         </div>
+        <div class="col-md-4 column">
+            <h3>Infobox </h3>
+            <table class="table" style='table-layout: fixed;word-wrap: break-word' width='100%'>
+                <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Value
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id='infobox'>
+                </tbody>
+            </table>
+        </div>
     </div>
+    <!-- <div class="row clearfix" style="margin:10px 40px;">
+        <div class="col-md-12 col-sm-12">
+            <span>person_list = {{person_list}}</span>
+            <span>organ_list = {{organ_list}}</span>
+        </div>
+    </div> -->
+
     <!--footer start-->
     <footer class="footer bottom" name="footer" id="footer">
         <div class="container">
@@ -91,13 +119,119 @@
 </html>
 
 <script type="text/javascript">
+    var person_list = {{ person_list| tojson }};
+    var organ_list = {{ organ_list| tojson }};
 
-    function query_person_info(pid) {
+    var person_table = {}
+    var organ_table = {}
 
+    function build_local_table() {
+        for (var i in person_list) {
+            e = person_list[i]
+            id = e['_id']
+            person_table[id] = e
+        }
+        for (var i in organ_list) {
+            e = organ_list[i]
+            id = e['_id']
+            organ_table[id] = e
+        }
     }
 
-    function query_organ_info(oid) {
-
+    function titleCase(s) {
+        var i, ss = s.toLowerCase().split(/\s+/);
+        for (i = 0; i < ss.length; i++) {
+            ss[i] = ss[i].slice(0, 1).toUpperCase() + ss[i].slice(1);
+        }
+        return ss.join(' ');
     }
+
+    function init_result_from_keyword() {
+        for (var i in person_list) {
+            e = person_list[i]
+            id = e['_id']
+            type = "person"
+            name = titleCase(e['name'])
+            button = '<button type="person" value="' + id + '" style="border-radius: 10px;background-color:cornflowerblue;margin: 10px;"' + 'class="word btn btn-small">' + name + '</button>'
+            $('#Persons').append(button);
+        }
+        for (var i in organ_list) {
+            e = organ_list[i]
+            id = e['_id']
+            type = "organ"
+            name = titleCase(e['name'])
+            button = '<button type="organ" value="' + id + '" style="border-radius: 10px;background-color:darkseagreen;margin: 10px;"' + 'class="word btn btn-small">' + name + '</button>'
+            $('#Organizations').append(button);
+        }
+    }
+
+    $(document).ready(function () {
+        init_result_from_keyword();
+
+        $(".word").click(function (event) {
+            //console.log($(this).attr('type'))
+            //console.log($(this).attr('value'))
+            type = $(this).attr('type')
+            id = $(this).attr('value')
+            if (type == 'person') {
+                query_person_info(id)
+            } else {
+                query_organ_info(id)
+            }
+        });
+        build_local_table();
+    });
+
+    function query_person_info(id) {
+        $('#infobox').html('')
+        e = person_table[id]
+        for (var key in e) {
+            if ('Array' == getDataType(e[key])) {
+                if (e[key] == []) continue;
+                tr = "<tr><td>" + key + "</td><td>" + e[key].join(' ; ') + "</td></tr>"
+            } else if ('Object' == getDataType(e[key])) {
+                str_data = JSON.stringify(e[key]);
+                tr = "<tr><td>" + key + "</td><td>" + str_data + "</td></tr>"
+            }
+            else {
+                if (e[key] == null || e[key] == '') continue;
+                tr = "<tr><td>" + key + "</td><td>" + e[key] + "</td></tr>"
+            }
+            $('#infobox').append(tr)
+        }
+    }
+
+    function query_organ_info(id) {
+        $('#infobox').html('')
+        e = organ_table[id]
+        for (var key in e) {
+            if ('Array' == getDataType(e[key])) {
+                if (e[key] == []) continue;
+                tr = "<tr><td>" + key + "</td><td>" + e[key].join(' ; ') + "</td></tr>"
+            } else if ('Object' == getDataType(e[key])) {
+                str_data = JSON.stringify(e[key]);
+                tr = "<tr><td>" + key + "</td><td>" + str_data + "</td></tr>"
+            }
+            else {
+                if (e[key] == null || e[key] == '') continue;
+                tr = "<tr><td>" + key + "</td><td>" + e[key] + "</td></tr>"
+            }
+            $('#infobox').append(tr)
+        }
+    }
+    var getDataType = function (o) {
+        if (o === null) {
+            return 'null';
+        }
+        else if (typeof o == 'object') {
+            if (typeof o.length == 'number') {
+                return 'Array';
+            } else {
+                return 'Object';
+            }
+        } else {
+            return 'param is no object type';
+        }
+    };
 
 </script>

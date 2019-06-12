@@ -71,33 +71,40 @@ def query_by_keyword():
     return render_template('kg_result.html', person_list=person_list, organ_list=organ_list)
 
 
-@app.route('/kg/query_person_by_id', methods=['GET', 'POST'])
-def query_person_by_id():
+@app.route('/kg/json/query_by_kid', methods=['GET'])
+def query_by_kid_json():
+    kid = request.args.get('kid').strip().lower()
+    person_list, organ_list = kg.query_by_kid(kid)
+    return jsonify({'person_list': person_list, 'organ_list': organ_list}), 200
+
+
+@app.route('/kg/json/query_person_by_id', methods=['GET', 'POST'])
+def query_person_by_id_json():
     pid = request.form.get('pid').strip().lower()
     e = kg.query_person_by_id(pid)
     return jsonify(e), 200
 
 
-@app.route('/kg/query_organ_by_id', methods=['GET', 'POST'])
-def query_organ_by_id():
+@app.route('/kg/json/query_organ_by_id', methods=['GET', 'POST'])
+def query_organ_by_id_json():
     oid = request.form.get('oid').strip().lower()
     e = kg.query_organ_by_id(oid)
     return jsonify(e), 200
 
 
-@app.route('/kg/query_person_by_name', methods=['GET', 'POST'])
-def query_person_by_name():
+@app.route('/kg/json/query_person_by_name', methods=['GET', 'POST'])
+def query_person_by_name_json():
     name = request.args.get('name').strip().lower()
     es = kg.query_person_by_name(name)
     return jsonify(es), 200
 
 
-@app.route('/kg/query_organ_by_name', methods=['GET', 'POST'])
-def query_organ_by_name():
+@app.route('/kg/json/query_organ_by_name', methods=['GET', 'POST'])
+def query_organ_by_name_json():
     name = request.args.get('name').strip().lower()
     es = kg.query_organ_by_name(name)
     return jsonify(es), 200
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=False, host='0.0.0.0')

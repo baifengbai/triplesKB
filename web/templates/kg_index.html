@@ -272,12 +272,9 @@
             global_data = mydata;
 
             echarts.util.each(mydata.children, function (datum, index) {
-                index % 2 === 1 && (datum.collapsed = true);
+                index % 3 === 1 && (datum.collapsed = true);
                 echarts.util.each(datum.children, function (t, i) {
                     i % 2 === 0 && (t.collapsed = true);
-                    echarts.util.each(t.children, function (tt, j) {
-                        j % 2 === 1 && (tt.collapsed = true);
-                    });
                 });
 
             });

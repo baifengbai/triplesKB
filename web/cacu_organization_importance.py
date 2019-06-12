@@ -19,8 +19,14 @@ kg_db = client['kg']
 if __name__ == "__main__":
     organ_table = kg_db['organ']
     organ_dct = {}
-    for t in organ_table.find({}):
+    organ_list = [o for o in organ_table.find({})]
+    for t in organ_list:
         organ_dct[t['_id']] = len(t.keys())
+
+    for o in organ_list:
+        for i in ['university', 'technology', 'school', 'army', 'space', 'college', 'institute', 'navy']:
+            if o['name'].find(i) != -1:
+                organ_dct[o['_id']] += 500
 
     per_org_table = kg_db['per_org']
     tpls = per_org_table.find({})
