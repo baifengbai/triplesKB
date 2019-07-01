@@ -66,19 +66,6 @@ python server.py  #启动flask服务器
 ![](img/6.png)
 
 
-### Citation
-
-If you use this work in a scientific publication, I would appreciate references to the following BibTex entry:
-
-```latex
-@misc{jasonhavend2019@triplesKB,
-  title={triplesKB},
-  author={Jianghai Dai},
-  howpublished={\url{https://github.com/jasonhavenD/triplesKB}},
-  year={2019}
-}
-```
-
 ### Reference
 
 - [spider](https://github.com/jasonhavend/DJH-Spider)
